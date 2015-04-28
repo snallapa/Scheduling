@@ -53,6 +53,9 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="groupChosen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ls4-wG-ePD"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GwA-nJ-2Is">
                                 <rect key="frame" x="300" y="144" width="134" height="67"/>
@@ -61,6 +64,9 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="groupChosen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dfr-Ny-7CF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRq-Cl-t3C">
                                 <rect key="frame" x="442" y="144" width="134" height="67"/>
@@ -70,7 +76,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="cB0-52-2oj" kind="show" id="4bN-kb-uxT"/>
+                                    <action selector="groupChosen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GxR-jL-0XZ"/>
+                                    <segue destination="cB0-52-2oj" kind="show" id="Bq5-sg-GJN"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IC0-fQ-eyT">
@@ -101,6 +108,9 @@
                                         <exclude reference="ajk-0N-dD1"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="groupChosen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1x6-fF-tnM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -148,10 +158,13 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="textField" destination="TYe-8A-Hib" id="wUb-Bj-rSG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="296" y="284"/>
+            <point key="canvasLocation" x="280" y="246"/>
         </scene>
         <!--NameOfPerson-->
         <scene sceneID="axq-bn-BTh">
