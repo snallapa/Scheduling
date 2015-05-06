@@ -14,6 +14,11 @@ class ViewController: UIViewController {
     var residentsFiltered = [AnyObject]?()
 
     @IBOutlet weak var textField: UITextField!
+ 
+    
+    
+    
+    
     
     @IBAction func groupChosen(sender: UIButton) {
         let color = sender.currentTitle!.lowercaseString
