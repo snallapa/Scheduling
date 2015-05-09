@@ -30,6 +30,8 @@
 		35C5EDD01AE8298800350B49 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C5EDCF1AE8298800350B49 /* SystemConfiguration.framework */; };
 		35C5EDD21AE8299100350B49 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C5EDD11AE8299100350B49 /* libz.dylib */; };
 		35C5EDD41AE829AA00350B49 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C5EDD31AE829AA00350B49 /* libsqlite3.dylib */; };
+		B6295A7B1AF0F685005DC493 /* SegmentedViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6295A7A1AF0F685005DC493 /* SegmentedViews.storyboard */; };
+		B66EF0361AF940CE00D3F17D /* SegmentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66EF0351AF940CE00D3F17D /* SegmentedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		35C5EDCF1AE8298800350B49 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		35C5EDD11AE8299100350B49 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		35C5EDD31AE829AA00350B49 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		B6295A7A1AF0F685005DC493 /* SegmentedViews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SegmentedViews.storyboard; sourceTree = "<group>"; };
+		B66EF0351AF940CE00D3F17D /* SegmentedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,9 +136,11 @@
 				35C5ED821AE815A100350B49 /* AppDelegate.swift */,
 				35C5ED841AE815A100350B49 /* ViewController.swift */,
 				35C5ED861AE815A100350B49 /* Main.storyboard */,
+				B66EF0351AF940CE00D3F17D /* SegmentedViewController.swift */,
 				35C5ED891AE815A100350B49 /* Images.xcassets */,
 				35C5ED8B1AE815A100350B49 /* LaunchScreen.xib */,
 				35C5ED801AE815A100350B49 /* Supporting Files */,
+				B6295A7A1AF0F685005DC493 /* SegmentedViews.storyboard */,
 			);
 			path = Scheduling;
 			sourceTree = "<group>";
@@ -270,6 +276,7 @@
 			files = (
 				35C5ED881AE815A100350B49 /* Main.storyboard in Resources */,
 				35C5ED8D1AE815A100350B49 /* LaunchScreen.xib in Resources */,
+				B6295A7B1AF0F685005DC493 /* SegmentedViews.storyboard in Resources */,
 				35C5ED8A1AE815A100350B49 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B66EF0361AF940CE00D3F17D /* SegmentedViewController.swift in Sources */,
 				35C5ED851AE815A100350B49 /* ViewController.swift in Sources */,
 				35C5ED831AE815A100350B49 /* AppDelegate.swift in Sources */,
 			);
