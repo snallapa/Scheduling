@@ -14,6 +14,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var residentsFiltered = [PFObject]?()
 
     @IBOutlet weak var textField: UITextField!
+ 
+    
+    
+    
+    
     
     @IBOutlet weak var tableView: UITableView!
 
