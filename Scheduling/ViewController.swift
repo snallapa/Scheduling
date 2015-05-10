@@ -12,19 +12,13 @@ import Parse
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var residentsFiltered = [PFObject]?()
-
+    
     @IBOutlet weak var textField: UITextField!
- 
-    
-    
-    
-    
     
     @IBOutlet weak var tableView: UITableView!
-
-
     
-    let textCellIdentifier = "ResidentCell"
+    
+    
     
     @IBAction func groupChosen(sender: UIButton) {
         let color = sender.currentTitle!.lowercaseString
@@ -35,13 +29,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if error == nil {
                 // The find succeeded.
                 println("Successfully retrieved \(residentsFiltered!.count) scores.")
-                self.tableView.reloadData()
+                
                 // Do something with the found objects
                 if let objects = residentsFiltered as? [PFObject] {
                     for object in objects {
                         println(object["name"]!)
                     }
                 }
+                self.tableView.reloadData()
                 
             } else {
                 // Log details of the failure
@@ -51,19 +46,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.textField.becomeFirstResponder()
     }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-               // Do any additional setup after loading the view, typically from a nib.
-        tableView.delegate = self
-        tableView.dataSource = self
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
         var query = PFQuery(className:"Residents")
-        query.whereKey("color", equalTo:"red")
         query.findObjectsInBackgroundWithBlock {
             (residentsFiltered, error: NSError?) -> Void in
             if error == nil {
                 // The find succeeded.
                 println("Successfully retrieved \(residentsFiltered!.count) scores.")
-                self.tableView.reloadData()
                 // Do something with the found objects
                 if let objects = residentsFiltered {
                     for object in objects {
@@ -75,37 +73,44 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 // Log details of the failure
                 println("Error: \(error!) \(error!.userInfo!)")
             }
+            
         }
         
+        
+        
+        
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(100000))
         if let numberResidents = residentsFiltered {
+            println(numberResidents.count)
             return numberResidents.count
         }
         else {
             return 0;
         }
     }
- 
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier, forIndexPath: indexPath) as! UITableViewCell
+        let den = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath)
+        let text = residentsFiltered![indexPath.row]["name"] as! String
+        let cell = den as! UITableViewCell
+        cell.textLabel?.text = text
         
-        let row = indexPath.row
-        let resident = residentsFiltered![row]
-        cell.textLabel?.text = resident["name"] as? String
-        return cell
+        return cell 
     }
-
-
+    
+    
 }
-
