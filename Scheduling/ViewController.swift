@@ -76,10 +76,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         }
 
-        
-        
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,14 +89,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(100000))
-        if let numberResidents = residentsFiltered {
-            println(numberResidents.count)
-            return numberResidents.count
-        }
-        else {
+       // if let numberResidents = residentsFiltered {
+            println(residentsFiltered!.count)
+            return residentsFiltered!.count
+      //  }
+     //   else {
             return 0;
-        }
+     //   }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
