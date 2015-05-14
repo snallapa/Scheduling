@@ -207,7 +207,6 @@
                                 <segments>
                                     <segment title="Now"/>
                                     <segment title="Today"/>
-                                    <segment title="Week"/>
                                 </segments>
                                 <connections>
                                     <action selector="ScreenChanger:" destination="JcV-mm-PgV" eventType="valueChanged" id="ZMI-8K-OpD"/>

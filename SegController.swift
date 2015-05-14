@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Parse
 
-class NameOfPersonViewController: UIViewController{
+class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     var text = String()
 
@@ -58,9 +58,51 @@ class NameOfPersonViewController: UIViewController{
     
     var currentClassName = ""
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let currentDate = NSDate()
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let dayOfWeek = dateFormatter.stringFromDate(currentDate).lowercaseString
+        
+        let den = tableView.dequeueReusableCellWithIdentifier("DailyClassEvent", forIndexPath: indexPath)
+        
+       // if (((Schedule![dayOfWeek]! as! NSDictionary)["event\(indexPath.row + 1)"] as! NSDictionary)["name"]! as! String != ""){
+        let text = ((Schedule![dayOfWeek]! as! NSDictionary)["event\(indexPath.row + 1)"] as! NSDictionary)["name"]! as! String
+        let startTime = ((Schedule![dayOfWeek]! as! NSDictionary)["event\(indexPath.row + 1)"] as! NSDictionary)["startTime"]! as! String
+        let endTime = ((Schedule![dayOfWeek]! as! NSDictionary)["event\(indexPath.row + 1)"] as! NSDictionary)["endTime"]! as! String
+        let theWholeText = (text + startTime + endTime) as! String
+            
+     //   }
+        println(text)
+    /*    else{
+            let text = "You do not have a class this period"
+        }
+        */
+        println(text)
+        let cell = den as! UITableViewCell
+        cell.textLabel?.text = theWholeText
+        
+        return cell
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        DailyScheduleTableView.delegate = self
+        DailyScheduleTableView.dataSource = self
+        
+      //  println(Schedule)
+        
+        
         UserName.text! = text
         
             let currentDate = NSDate() // You can input the custom as well
@@ -82,6 +124,8 @@ class NameOfPersonViewController: UIViewController{
             println(dayOfWeek)
         
         // convert strings to `NSDate` objects
+        
+        
       
     
         for i in 1...6 {
