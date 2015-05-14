@@ -54,23 +54,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        var query = PFQuery(className:"Residents")
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                // The find succeeded.
-                println("Successfully retrieved \(objects!.count) scores.")
-                // Do something with the found objects
-                if let objectss = objects as? [PFObject] {
-                    self.residentsFiltered = Array(objectss[0..<objectss.count])
-                }
-                self.tableView.reloadData()
-            } else {
-                // Log details of the failure
-                println("Error: \(error!) \(error!.userInfo!)")
-            }
-        }
         tableView.delegate = self
         tableView.dataSource = self
     }

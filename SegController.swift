@@ -54,40 +54,7 @@ class NameOfPersonViewController: UIViewController{
         // Do any additional setup after loading the view.
         
         UserName.text = currentUserName
-        
-        var query = PFQuery(className:"Residents")
-        query.getObjectInBackgroundWithId("vZ2CpZBysS") {
-            (nameOfUser: PFObject?, error: NSError?) -> Void in
-            if error == nil && nameOfUser != nil {
-                println(nameOfUser!["name"])
-                
-            } else {
-                println(error)
-            }
-           let pName = nameOfUser!["name"] as! String
-        self.UserName.text = pName
-            
-            
-        }
-        var query2 = PFQuery(className:"GameScore")
-        query.whereKey("playerName", equalTo:"Sean Plott")
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                // The find succeeded.
-                println("Successfully retrieved \(objects!.count) scores.")
-                // Do something with the found objects
-                if let objects = objects as? [PFObject] {
-                    for object in objects {
-                        println(object.objectId)
-                    }
-                }
-            } else {
-                // Log details of the failure
-                println("Error: \(error!) \(error!.userInfo!)")
-            }
-        }
+
         
         
         
