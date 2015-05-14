@@ -8,10 +8,12 @@
 
 import UIKit
 import Parse
+import Foundation
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var residentsFiltered = [PFObject]()
+    var currentUserName = "Name"
     
     @IBOutlet weak var textField: UITextField!
     
@@ -99,6 +101,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         return cell 
     }
+  
     
+  
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        
+              
+        if let cell = sender as? UITableViewCell {
+            let i = tableView.indexPathForCell(cell)!.row
+            if segue.identifier == "NameToSchedule"{
+                let navigationController = segue.destinationViewController as! UINavigationController
+               let personController = navigationController.topViewController as! NameOfPersonViewController
+                personController.text = residentsFiltered[i]["name"] as! String
+           
+                personController.Schedule = residentsFiltered[i]["schedule"]
+              //  println( residentsFiltered[i]["schedule"])
+                
+               
+                
+            }
+        }
+        
+    }
     
 }

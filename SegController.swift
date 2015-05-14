@@ -12,16 +12,26 @@ import Parse
 
 class NameOfPersonViewController: UIViewController{
     
+    var text = String()
+
+    var Schedule = AnyObject?()
     
     @IBOutlet weak var OrangeView: UIView!
     
     @IBOutlet weak var GreenView: UIView!
-    
-    @IBOutlet weak var PurpleView: UIView!
-    
+   
     @IBOutlet weak var UserName: UILabel!
     
     @IBOutlet weak var ClassName: UILabel!
+    
+    @IBOutlet weak var RoomNumber: UILabel!
+    
+    @IBOutlet weak var DailyScheduleTableView: UITableView!
+    
+    @IBOutlet weak var TimeNowLabel: UILabel!
+
+    
+
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -30,68 +40,125 @@ class NameOfPersonViewController: UIViewController{
         case 0:
             OrangeView.hidden = true
             GreenView.hidden = false
-            PurpleView.hidden = true
+            
         case 1:
             OrangeView.hidden = false
             GreenView.hidden = false
-            PurpleView.hidden = true
+            
         case 2:
             OrangeView.hidden = false
             GreenView.hidden = false
-            PurpleView.hidden = false
+            
         default:
             break;
         }
     }
-    var currentUserName = "Name"
-    var currentClassName = "You now have a class"
+   
+    
+    
+    var currentClassName = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserName.text! = text
+        
+            let currentDate = NSDate() // You can input the custom as well
+            let calendar = NSCalendar.currentCalendar()
+            let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitTimeZone, fromDate:  NSDate())
+            let currentHour = (components.hour % 12)
+            let currentMinute = (components.minute)
+        
+            println(currentHour)
+            println(currentMinute)
+        
+        println("\(currentHour):\(currentMinute)")
+        
+        TimeNowLabel.text = "The time now is \(currentHour):\(currentMinute)"
+       
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "EEEE"
+            let dayOfWeek = dateFormatter.stringFromDate(currentDate).lowercaseString
+            println(dayOfWeek)
+        
+        // convert strings to `NSDate` objects
+      
+    
+        for i in 1...6 {
+        let DailyStartTimes = ((Schedule![dayOfWeek]! as! NSDictionary)["event\(i)"] as! NSDictionary)["startTime"]! as! String
+            
+        let DailyEndTimes = ((Schedule![dayOfWeek]! as! NSDictionary)["event\(i)"] as! NSDictionary)["endTime"]! as! String
+            
+           println(DailyStartTimes)
+            println(DailyEndTimes)
+            
+            
+            println("check1")
+            let todaysDate  = NSDate()
+            
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            let dateString = formatter.stringFromDate(todaysDate)
+            
+            formatter.dateFormat = formatter.dateFormat + "HH:mm"
+            let DailyStartString = formatter.dateFromString(dateString + DailyStartTimes)
+            let DailyEndString = formatter.dateFromString(dateString + DailyEndTimes)
+            
+            // now we can see if today's date is inbetween these two resulting `NSDate` objects
+            println(DailyStartString)
+            println(DailyEndString)
+            
+            let testString = formatter.dateFromString(dateString + "7:00")
+            let testString2 = formatter.dateFromString(dateString + "8:00")
+
+            println("today is \(todaysDate)")
+            println("test string is \(testString)")
+            
+            
+            let isInRange = todaysDate.compare(DailyStartString!) != .OrderedAscending && todaysDate.compare(DailyEndString!) != .OrderedDescending
+            
+            let isInRange2 = todaysDate.compare(testString!) != .OrderedAscending && todaysDate.compare(testString2!) != .OrderedDescending
+            
+            
+            println(isInRange)
+            println("second test \(isInRange)")
+          
+            if (isInRange == false){
+                currentClassName = "You do not have a class right now"
+                ClassName.text = currentClassName
+                RoomNumber.text = ""
+            
+            }
+            if (isInRange == true){
+                let CurrentClass = ((Schedule![dayOfWeek]! as! NSDictionary)["event\(i)"] as! NSDictionary)["name"]! as! String
+                currentClassName = "You have \(CurrentClass) right now"
+                ClassName.text = currentClassName
+                
+                RoomNumber.text = "Please attend your class now"
+
+        
+            }
+            
+            
+            
+        }
+        
+        
+        
+        
+        
+        
         
         OrangeView.hidden = true
         GreenView.hidden = false
-        PurpleView.hidden = true
+        
         // Do any additional setup after loading the view.
         
-        UserName.text = currentUserName
-        
-        var query = PFQuery(className:"Residents")
-        query.getObjectInBackgroundWithId("vZ2CpZBysS") {
-            (nameOfUser: PFObject?, error: NSError?) -> Void in
-            if error == nil && nameOfUser != nil {
-                println(nameOfUser!["name"])
-                
-            } else {
-                println(error)
-            }
-           let pName = nameOfUser!["name"] as! String
-        self.UserName.text = pName
+   //     UserName.text = currentUserName
             
-            
-        }
-        var query2 = PFQuery(className:"GameScore")
-        query.whereKey("playerName", equalTo:"Sean Plott")
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                // The find succeeded.
-                println("Successfully retrieved \(objects!.count) scores.")
-                // Do something with the found objects
-                if let objects = objects as? [PFObject] {
-                    for object in objects {
-                        println(object.objectId)
-                    }
-                }
-            } else {
-                // Log details of the failure
-                println("Error: \(error!) \(error!.userInfo!)")
-            }
-        }
-        
-        
-        
     }
+    
+
 
     
 }
