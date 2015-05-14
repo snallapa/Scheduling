@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		353944211B0563EE000B0828 /* TodayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353944201B0563EE000B0828 /* TodayTableViewCell.swift */; };
 		35C5ED831AE815A100350B49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5ED821AE815A100350B49 /* AppDelegate.swift */; };
 		35C5ED851AE815A100350B49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5ED841AE815A100350B49 /* ViewController.swift */; };
 		35C5ED881AE815A100350B49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C5ED861AE815A100350B49 /* Main.storyboard */; };
@@ -31,7 +32,7 @@
 		35C5EDD21AE8299100350B49 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C5EDD11AE8299100350B49 /* libz.dylib */; };
 		35C5EDD41AE829AA00350B49 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C5EDD31AE829AA00350B49 /* libsqlite3.dylib */; };
 		B6295A7B1AF0F685005DC493 /* SegmentedViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6295A7A1AF0F685005DC493 /* SegmentedViews.storyboard */; };
-		B6C05CBB1AFEA3BA00C3BABC /* SegController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C05CBA1AFEA3BA00C3BABC /* SegController.swift */; };
+		B6C05CBB1AFEA3BA00C3BABC /* NameOfPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C05CBA1AFEA3BA00C3BABC /* NameOfPersonViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		353944201B0563EE000B0828 /* TodayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayTableViewCell.swift; sourceTree = "<group>"; };
 		35C5ED7D1AE815A100350B49 /* Scheduling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scheduling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C5ED811AE815A100350B49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35C5ED821AE815A100350B49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,7 +75,7 @@
 		35C5EDD11AE8299100350B49 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		35C5EDD31AE829AA00350B49 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B6295A7A1AF0F685005DC493 /* SegmentedViews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SegmentedViews.storyboard; sourceTree = "<group>"; };
-		B6C05CBA1AFEA3BA00C3BABC /* SegController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegController.swift; path = ../SegController.swift; sourceTree = "<group>"; };
+		B6C05CBA1AFEA3BA00C3BABC /* NameOfPersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NameOfPersonViewController.swift; path = ../NameOfPersonViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +135,7 @@
 		35C5ED7F1AE815A100350B49 /* Scheduling */ = {
 			isa = PBXGroup;
 			children = (
-				B6C05CBA1AFEA3BA00C3BABC /* SegController.swift */,
+				B6C05CBA1AFEA3BA00C3BABC /* NameOfPersonViewController.swift */,
 				35C5ED821AE815A100350B49 /* AppDelegate.swift */,
 				35C5ED841AE815A100350B49 /* ViewController.swift */,
 				35C5ED861AE815A100350B49 /* Main.storyboard */,
@@ -141,6 +143,7 @@
 				35C5ED8B1AE815A100350B49 /* LaunchScreen.xib */,
 				35C5ED801AE815A100350B49 /* Supporting Files */,
 				B6295A7A1AF0F685005DC493 /* SegmentedViews.storyboard */,
+				353944201B0563EE000B0828 /* TodayTableViewCell.swift */,
 			);
 			path = Scheduling;
 			sourceTree = "<group>";
@@ -297,7 +300,8 @@
 			files = (
 				35C5ED851AE815A100350B49 /* ViewController.swift in Sources */,
 				35C5ED831AE815A100350B49 /* AppDelegate.swift in Sources */,
-				B6C05CBB1AFEA3BA00C3BABC /* SegController.swift in Sources */,
+				B6C05CBB1AFEA3BA00C3BABC /* NameOfPersonViewController.swift in Sources */,
+				353944211B0563EE000B0828 /* TodayTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

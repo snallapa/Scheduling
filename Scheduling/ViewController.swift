@@ -8,10 +8,12 @@
 
 import UIKit
 import Parse
+import Foundation
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var residentsFiltered = [PFObject]()
+    var currentUserName = "Name"
     
     @IBOutlet weak var textField: UITextField!
     
@@ -52,8 +54,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
+        var query = PFQuery(className:"Residents")
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                // The find succeeded.
+                println("Successfully retrieved \(objects!.count) scores.")
+                // Do something with the found objects
+                if let objectss = objects as? [PFObject] {
+                    self.residentsFiltered = Array(objectss[0..<objectss.count])
+                }
+                self.tableView.reloadData()
+            } else {
+                // Log details of the failure
+                println("Error: \(error!) \(error!.userInfo!)")
+            }
+        }
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -69,17 +86,41 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         return residentsFiltered.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let den = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath)
+        let den = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath) as! UITableViewCell
         let text = residentsFiltered[indexPath.row]["name"] as! String
         let cell = den as! UITableViewCell
         cell.textLabel?.text = text
         
         return cell 
     }
+  
     
+  
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        
+              
+        if let cell = sender as? UITableViewCell {
+            let i = tableView.indexPathForCell(cell)!.row
+            if segue.identifier == "NameToSchedule"{
+                let navigationController = segue.destinationViewController as! UINavigationController
+               let personController = navigationController.topViewController as! NameOfPersonViewController
+                personController.text = residentsFiltered[i]["name"] as! String
+           
+                personController.Schedule = residentsFiltered[i]["schedule"]
+              //  println( residentsFiltered[i]["schedule"])
+                
+               
+                
+            }
+        }
+        
+    }
     
 }
