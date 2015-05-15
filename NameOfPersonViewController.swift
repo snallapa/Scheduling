@@ -98,10 +98,8 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
             // You can input the custom as well
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitTimeZone, fromDate:  NSDate())
-        //let currentHour = (components.hour % 12)
-        //let currentMinute = (components.minute)
-        let currentHour = 5
-        let currentMinute = 31
+        let currentHour = (components.hour % 12)
+        let currentMinute = (components.minute)
         
         println(currentHour)
         println(currentMinute)
@@ -147,10 +145,17 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
             }
             
             if(currentClassIndex == -1) {
-                RoomNumber.text = "You have no classes now"
+                ClassName.text = "You have no classes now"
             }
             else {
-                RoomNumber.text = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
+                let classText = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
+                if(classText.isEmpty) {
+                    ClassName.text = "You have no classes right now"
+                }
+                else {
+                    ClassName.text = "You have \(classText) right now"
+                }
+                
             }
             
             

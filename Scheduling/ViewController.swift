@@ -91,7 +91,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func updateTableView() {
         for var i = 0; i<residentsNames.count;++i {
-            if(residentsNames[i].rangeOfString(residentName) == nil) {
+            if(residentsNames[i].lowercaseString.rangeOfString(residentName) == nil) {
                 residentsNames.removeAtIndex(i)
                 --i
             }
@@ -142,6 +142,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
   
     
+    func getScheduleFromName(name: String) -> Int{
+        for i in 0..<residentsFiltered.count {
+            if(residentsFiltered[i]["name"] as! String == name) {
+                return i
+            }
+        }
+        return -1
+    }
+    
   
     
     
@@ -151,11 +160,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let i = tableView.indexPathForCell(cell)!.row
             if segue.identifier == "NameToSchedule"{
                 let navigationController = segue.destinationViewController as! UINavigationController
-               let personController = navigationController.topViewController as! NameOfPersonViewController
+                let personController = navigationController.topViewController as! NameOfPersonViewController
                 personController.text = residentsNames[i]
-           
-                personController.Schedule = residentsFiltered[i]["schedule"]
-              //  println( residentsFiltered[i]["schedule"])
+                println("\(getScheduleFromName(residentsNames[i]))")
+                println(residentsFiltered[getScheduleFromName(residentsNames[i])]["schedule"])
+                personController.Schedule = residentsFiltered[getScheduleFromName(residentsNames[i])]["schedule"]!
+                tableView.deselectRowAtIndexPath(tableView.indexPathForCell(cell)!, animated: true)
+                
                 
                
                 

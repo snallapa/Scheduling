@@ -213,13 +213,13 @@
                                     <action selector="ScreenChanger:" destination="JcV-mm-PgV" eventType="valueChanged" id="ZMI-8K-OpD"/>
                                 </connections>
                             </segmentedControl>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="Sevvennnn" translatesAutoresizingMaskIntoConstraints="NO" id="A13-v7-g83">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="Sevvennnn" translatesAutoresizingMaskIntoConstraints="NO" id="A13-v7-g83">
                                 <rect key="frame" x="16" y="72" width="176" height="50"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7h-rC-2j0">
                                 <rect key="frame" x="16" y="166" width="568" height="426"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You now have ______ class" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWM-GI-7nb">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWM-GI-7nb">
                                         <rect key="frame" x="8" y="8" width="351" height="57"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="351" id="RHR-3N-vpp"/>
@@ -304,7 +304,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.58608046121282253" green="1" blue="0.73231801458986634" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="N9D-1J-NMt" secondAttribute="trailing" id="35C-xr-rwk"/>
                                     <constraint firstItem="XWM-GI-7nb" firstAttribute="trailing" secondItem="BWB-Kp-xU4" secondAttribute="trailing" id="4pP-w7-Ejz"/>
@@ -320,8 +320,8 @@
                                     <constraint firstItem="N9D-1J-NMt" firstAttribute="leading" secondItem="j7h-rC-2j0" secondAttribute="leading" id="w2B-Eo-q7x"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSh-Ue-6Wb">
-                                <rect key="frame" x="531" y="72" width="53" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSh-Ue-6Wb">
+                                <rect key="frame" x="200" y="72" width="384" height="50"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -331,6 +331,7 @@
                         <constraints>
                             <constraint firstItem="j7h-rC-2j0" firstAttribute="top" secondItem="eNA-gW-pxp" secondAttribute="bottom" constant="8" symbolic="YES" id="1Lb-Fl-hYC"/>
                             <constraint firstItem="A13-v7-g83" firstAttribute="top" secondItem="fZC-AJ-hJe" secondAttribute="bottom" constant="8" symbolic="YES" id="2Ra-xB-Hwz"/>
+                            <constraint firstItem="tSh-Ue-6Wb" firstAttribute="centerY" secondItem="A13-v7-g83" secondAttribute="centerY" id="48h-62-a8c"/>
                             <constraint firstItem="tSh-Ue-6Wb" firstAttribute="top" secondItem="fZC-AJ-hJe" secondAttribute="bottom" constant="8" symbolic="YES" id="720-aM-1v8"/>
                             <constraint firstItem="bFu-Js-lgy" firstAttribute="top" secondItem="eNA-gW-pxp" secondAttribute="bottom" constant="8" id="76E-nm-WUk"/>
                             <constraint firstItem="FYt-fP-5Pb" firstAttribute="top" secondItem="j7h-rC-2j0" secondAttribute="bottom" constant="8" symbolic="YES" id="7Ph-HW-8fK"/>
@@ -340,6 +341,7 @@
                             <constraint firstItem="A13-v7-g83" firstAttribute="leading" secondItem="MKc-V4-Waz" secondAttribute="leadingMargin" id="Rmr-HR-1A3"/>
                             <constraint firstItem="eNA-gW-pxp" firstAttribute="trailing" secondItem="MKc-V4-Waz" secondAttribute="trailingMargin" id="Vx1-UG-K6D"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tSh-Ue-6Wb" secondAttribute="trailing" id="WOu-Sh-cb0"/>
+                            <constraint firstItem="tSh-Ue-6Wb" firstAttribute="leading" secondItem="A13-v7-g83" secondAttribute="trailing" constant="8" symbolic="YES" id="fRy-KZ-yOY"/>
                             <constraint firstItem="eNA-gW-pxp" firstAttribute="leading" secondItem="MKc-V4-Waz" secondAttribute="leadingMargin" id="iVj-9m-m9h"/>
                             <constraint firstItem="j7h-rC-2j0" firstAttribute="trailing" secondItem="eNA-gW-pxp" secondAttribute="trailing" id="rZY-HF-G5V"/>
                         </constraints>
