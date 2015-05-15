@@ -101,10 +101,8 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
             // You can input the custom as well
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitTimeZone, fromDate:  NSDate())
-        //let currentHour = (components.hour % 12)
-        //let currentMinute = (components.minute)
-        let currentHour = 11
-        let currentMinute = 31
+        let currentHour = (components.hour % 12)
+        let currentMinute = (components.minute)
         
         println(currentHour)
         println(currentMinute)
@@ -150,10 +148,15 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
             }
             
             if(currentClassIndex == -1) {
-                RoomNumber.text = "You have no classes now"
+                ClassName.text = ""
+                RoomNumber.text = "If you have a class, please attend it now"
             }
             else {
-                RoomNumber.text = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
+                
+                let c = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
+         //       RoomNumber.text = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
+                ClassName.text = "You have: \(c)"
+                
             }
             
             
