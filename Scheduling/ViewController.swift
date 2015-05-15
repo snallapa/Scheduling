@@ -91,9 +91,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let den = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath) as! UITableViewCell
         let text = residentsFiltered[indexPath.row]["name"] as! String
-        let cell = den as! UITableViewCell
         cell.textLabel?.text = text
         
         return cell 
@@ -104,7 +103,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        
               
         if let cell = sender as? UITableViewCell {
             let i = tableView.indexPathForCell(cell)!.row

@@ -16,6 +16,10 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
 
     var Schedule = AnyObject?()
     
+    var currentDate = NSDate()
+    
+    var dayOfWeek: String?
+    
     @IBOutlet weak var OrangeView: UIView!
     
     @IBOutlet weak var GreenView: UIView!
@@ -66,63 +70,52 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
         return 6
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let currentDate = NSDate()
-        
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEEE"
         let dayOfWeek = dateFormatter.stringFromDate(currentDate).lowercaseString
-        
-        let den = tableView.dequeueReusableCellWithIdentifier("DailyClassEvent", forIndexPath: indexPath) as! UITableViewCell
+
+        let cell = tableView.dequeueReusableCellWithIdentifier("DailyClassEvent", forIndexPath: indexPath) as! TodayTableViewCell
         
        // if (((Schedule![dayOfWeek]! as! NSDictionary)["event\(indexPath.row + 1)"] as! NSDictionary)["name"]! as! String != ""){
         let currentEvent = ((Schedule![dayOfWeek]! as! NSDictionary)["event\(indexPath.row + 1)"] as! NSDictionary)
-        let text = currentEvent["name"]! as! String
-        let startTime = currentEvent["startTime"] as! String
-        let endTime = currentEvent["endTime"]! as! String
-        let theWholeText = (text + startTime + endTime)
-            
-     //   }
-        println(text)
-    /*    else{
-            let text = "You do not have a class this period"
-        }
-        */
-        println(text)
-        let cell = den as! UITableViewCell
-        cell.textLabel?.text = theWholeText
-        
+        cell.event = currentEvent
         return cell
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         DailyScheduleTableView.delegate = self
         DailyScheduleTableView.dataSource = self
         
-      //  println(Schedule)
         
+        currentDate = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        dayOfWeek = dateFormatter.stringFromDate(currentDate).lowercaseString
+    
         
         UserName.text! = text
         
-            let currentDate = NSDate() // You can input the custom as well
-            let calendar = NSCalendar.currentCalendar()
-            let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitTimeZone, fromDate:  NSDate())
-            let currentHour = (components.hour % 12)
-            let currentMinute = (components.minute)
+            // You can input the custom as well
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitTimeZone, fromDate:  NSDate())
+        let currentHour = (components.hour % 12)
+        let currentMinute = (components.minute)
         
             println(currentHour)
             println(currentMinute)
         
         println("\(currentHour):\(currentMinute)")
         
-        TimeNowLabel.text = "The time now is \(currentHour):\(currentMinute)"
-       
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "EEEE"
-            let dayOfWeek = dateFormatter.stringFromDate(currentDate).lowercaseString
-            println(dayOfWeek)
+        if(currentMinute<10) {
+            TimeNowLabel.text = "The time now is \(currentHour):0\(currentMinute)"
+        }
+        else {
+            TimeNowLabel.text = "The time now is \(currentHour):\(currentMinute)"
+        }
+        
         
         // convert strings to `NSDate` objects
         
@@ -130,12 +123,12 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
       
     
         for i in 1...6 {
-        let DailyStartTimes = ((Schedule![dayOfWeek]! as! NSDictionary)["event\(i)"] as! NSDictionary)["startTime"]! as! String
+            let dailyStartTimes = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(i)"] as! NSDictionary)["startTime"]! as! String
             
-        let DailyEndTimes = ((Schedule![dayOfWeek]! as! NSDictionary)["event\(i)"] as! NSDictionary)["endTime"]! as! String
+            let dailyEndTimes = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(i)"] as! NSDictionary)["endTime"]! as! String
             
-           println(DailyStartTimes)
-            println(DailyEndTimes)
+            println(dailyStartTimes)
+            println(dailyEndTimes)
             
             
             println("check1")
@@ -146,8 +139,8 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
             let dateString = formatter.stringFromDate(todaysDate)
             
             formatter.dateFormat = formatter.dateFormat + "HH:mm"
-            let DailyStartString = formatter.dateFromString(dateString + DailyStartTimes)
-            let DailyEndString = formatter.dateFromString(dateString + DailyEndTimes)
+            let DailyStartString = formatter.dateFromString(dateString + dailyStartTimes)
+            let DailyEndString = formatter.dateFromString(dateString + dailyEndTimes)
             
             // now we can see if today's date is inbetween these two resulting `NSDate` objects
             println(DailyStartString)
@@ -175,7 +168,7 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
             
             }
             if (isInRange == true){
-                let CurrentClass = ((Schedule![dayOfWeek]! as! NSDictionary)["event\(i)"] as! NSDictionary)["name"]! as! String
+                let CurrentClass = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(i)"] as! NSDictionary)["name"]! as! String
                 currentClassName = "You have \(CurrentClass) right now"
                 ClassName.text = currentClassName
                 
