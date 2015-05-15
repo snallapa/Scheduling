@@ -14,7 +14,7 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
     
     var text = String()
 
-    var Schedule = AnyObject?()
+    var Schedule: AnyObject? = AnyObject?()
     
     var currentDate = NSDate()
     
@@ -59,9 +59,6 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
     }
    
     
-    
-    var currentClassName = ""
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -103,7 +100,7 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
         let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitTimeZone, fromDate:  NSDate())
         //let currentHour = (components.hour % 12)
         //let currentMinute = (components.minute)
-        let currentHour = 11
+        let currentHour = 5
         let currentMinute = 31
         
         println(currentHour)

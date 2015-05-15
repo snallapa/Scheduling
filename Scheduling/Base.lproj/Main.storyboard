@@ -180,7 +180,7 @@
                     <navigationItem key="navigationItem" id="eN1-vH-YV3"/>
                     <connections>
                         <outlet property="tableView" destination="IC0-fQ-eyT" id="13S-9b-l1r"/>
-                        <outlet property="textField" destination="TYe-8A-Hib" id="wUb-Bj-rSG"/>
+                        <outlet property="userSearchField" destination="TYe-8A-Hib" id="sam-Hw-RK4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
