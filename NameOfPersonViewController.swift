@@ -101,11 +101,13 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
             // You can input the custom as well
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitTimeZone, fromDate:  NSDate())
-        let currentHour = (components.hour % 12)
-        let currentMinute = (components.minute)
+        //let currentHour = (components.hour % 12)
+        //let currentMinute = (components.minute)
+        let currentHour = 11
+        let currentMinute = 31
         
-            println(currentHour)
-            println(currentMinute)
+        println(currentHour)
+        println(currentMinute)
         
         println("\(currentHour):\(currentMinute)")
         
@@ -120,7 +122,7 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
         // convert strings to `NSDate` objects
         
         
-      
+        var currentClassIndex = -1
     
         for i in 1...6 {
             let dailyStartTimes = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(i)"] as! NSDictionary)["startTime"]! as! String
@@ -130,63 +132,33 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
             println(dailyStartTimes)
             println(dailyEndTimes)
             
-            
-            println("check1")
-            let todaysDate  = NSDate()
-            
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm"
-            let dateString = formatter.stringFromDate(todaysDate)
-            
-            formatter.dateFormat = formatter.dateFormat + "HH:mm"
-            let DailyStartString = formatter.dateFromString(dateString + dailyStartTimes)
-            let DailyEndString = formatter.dateFromString(dateString + dailyEndTimes)
-            
-            // now we can see if today's date is inbetween these two resulting `NSDate` objects
-            println(DailyStartString)
-            println(DailyEndString)
-            
-            let testString = formatter.dateFromString(dateString + "7:00")
-            let testString2 = formatter.dateFromString(dateString + "8:00")
-
-            println("today is \(todaysDate)")
-            println("test string is \(testString)")
-            
-            
-            let isInRange = todaysDate.compare(DailyStartString!) != .OrderedAscending && todaysDate.compare(DailyEndString!) != .OrderedDescending
-            
-            let isInRange2 = todaysDate.compare(testString!) != .OrderedAscending && todaysDate.compare(testString2!) != .OrderedDescending
-            
-            
-            println(isInRange)
-            println("second test \(isInRange)")
-          
-            if (isInRange == false){
-                currentClassName = "You do not have a class right now"
-                ClassName.text = currentClassName
-                RoomNumber.text = ""
-            
+            let hourStart = dailyStartTimes.substringWithRange(Range<String.Index>(start: dailyStartTimes.startIndex, end: dailyStartTimes.rangeOfString(":")!.startIndex))
+            let minStart = dailyStartTimes.substringWithRange(Range<String.Index>(start: advance(dailyStartTimes.rangeOfString(":")!.startIndex,1), end: dailyStartTimes.endIndex))
+            if(currentHour == hourStart.toInt()) {
+                if (currentMinute > minStart.toInt()) {
+                    currentClassIndex = i
+                }
+                else {
+                    if(i == 0) {
+                        currentClassIndex = -1
+                    }
+                    else {
+                        currentClassIndex = i-1
+                    }
+                    
+                }
             }
-            if (isInRange == true){
-                let CurrentClass = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(i)"] as! NSDictionary)["name"]! as! String
-                currentClassName = "You have \(CurrentClass) right now"
-                ClassName.text = currentClassName
-                
-                RoomNumber.text = "Please attend your class now"
-
-        
+            
+            if(currentClassIndex == -1) {
+                RoomNumber.text = "You have no classes now"
+            }
+            else {
+                RoomNumber.text = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
             }
             
             
             
         }
-        
-        
-        
-        
-        
-        
-        
         OrangeView.hidden = true
         GreenView.hidden = false
         
