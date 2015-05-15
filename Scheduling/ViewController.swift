@@ -10,14 +10,28 @@ import UIKit
 import Parse
 import Foundation
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
-    var residentsFiltered = [PFObject]()
+    var residentsNames = [String]()
+    
+    var residentsFiltered = [PFObject]() {
+        didSet {
+            resetNames()
+        }
+    }
+    
     var currentUserName = "Name"
     
-    @IBOutlet weak var textField: UITextField!
+    
+    @IBOutlet weak var userSearchField: UITextField!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var residentName = "" {
+        didSet{
+            updateTableView()
+        }
+    }
     
     
     
@@ -33,7 +47,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 println("Successfully retrieved \(objects!.count) scores.")
                 // Do something with the found objects
                 if let objectss = objects as? [PFObject] {
-                    var i = 0
 
                     self.residentsFiltered = Array(objectss[0..<objectss.count])
                 }
@@ -45,7 +58,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
         
-        self.textField.becomeFirstResponder()
+        self.userSearchField.becomeFirstResponder()
     }
     
     
@@ -73,6 +86,36 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         tableView.delegate = self
         tableView.dataSource = self
+        userSearchField.delegate = self
+    }
+    
+    func updateTableView() {
+        for var i = 0; i<residentsNames.count;++i {
+            if(residentsNames[i].lowercaseString.rangeOfString(residentName) == nil) {
+                residentsNames.removeAtIndex(i)
+                --i
+            }
+        }
+        tableView.reloadData()
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if textField == userSearchField {
+            resetNames()
+            if(string.isEmpty) {
+                residentName = residentName.substringToIndex(advance(residentName.startIndex, count(residentName) - 1))
+            }
+            residentName += string
+            
+        }
+        return true
+    }
+    
+    func resetNames() {
+        residentsNames.removeAll()
+        for i in 0..<residentsFiltered.count {
+            residentsNames.append(residentsFiltered[i]["name"] as! String)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -87,17 +130,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return residentsFiltered.count
+        return residentsNames.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath) as! UITableViewCell
-        let text = residentsFiltered[indexPath.row]["name"] as! String
+        let text = residentsNames[indexPath.row]
         cell.textLabel?.text = text
         
         return cell 
     }
   
+    
+    func getScheduleFromName(name: String) -> Int{
+        for i in 0..<residentsFiltered.count {
+            if(residentsFiltered[i]["name"] as! String == name) {
+                return i
+            }
+        }
+        return -1
+    }
     
   
     
@@ -108,11 +160,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let i = tableView.indexPathForCell(cell)!.row
             if segue.identifier == "NameToSchedule"{
                 let navigationController = segue.destinationViewController as! UINavigationController
-               let personController = navigationController.topViewController as! NameOfPersonViewController
-                personController.text = residentsFiltered[i]["name"] as! String
-           
-                personController.Schedule = residentsFiltered[i]["schedule"]
-              //  println( residentsFiltered[i]["schedule"])
+                let personController = navigationController.topViewController as! NameOfPersonViewController
+                personController.text = residentsNames[i]
+                println("\(getScheduleFromName(residentsNames[i]))")
+                println(residentsFiltered[getScheduleFromName(residentsNames[i])]["schedule"])
+                personController.Schedule = residentsFiltered[getScheduleFromName(residentsNames[i])]["schedule"]!
+                tableView.deselectRowAtIndexPath(tableView.indexPathForCell(cell)!, animated: true)
+                
                 
                
                 

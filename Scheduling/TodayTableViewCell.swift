@@ -22,7 +22,14 @@ class TodayTableViewCell: UITableViewCell {
     
     func updateUI() {
         if let timeEvent = event {
-            eventNameLabel.text = timeEvent["name"] as? String
+            var classText = ""
+            if ((timeEvent["name"] as! String).isEmpty) {
+                classText = "No Class"
+            }
+            else {
+                classText = (timeEvent["name"] as! String)
+            }
+            eventNameLabel.text = classText
             let startTime = timeEvent["startTime"] as! String
             let endTime = timeEvent["endTime"] as! String
             timeLabel.text = ("\(startTime):\(endTime)")

@@ -14,7 +14,7 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
     
     var text = String()
 
-    var Schedule = AnyObject?()
+    var Schedule: AnyObject? = AnyObject?()
     
     var currentDate = NSDate()
     
@@ -58,9 +58,6 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
    
-    
-    
-    var currentClassName = ""
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -148,6 +145,7 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
             }
             
             if(currentClassIndex == -1) {
+
                 ClassName.text = ""
                 RoomNumber.text = "If you have a class, please attend it now"
             }
@@ -156,6 +154,17 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
                 let c = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
          //       RoomNumber.text = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
                 ClassName.text = "You have: \(c)"
+
+                ClassName.text = "You have no classes now"
+        
+                let classText = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
+                if(classText.isEmpty) {
+                    ClassName.text = "You have no classes right now"
+                }
+                else {
+                    ClassName.text = "You have \(classText) right now"
+                }
+
                 
             }
             
