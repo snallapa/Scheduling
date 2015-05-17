@@ -199,58 +199,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eNA-gW-pxp">
-                                <rect key="frame" x="16" y="130" width="568" height="29"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="vyN-Ky-6Lc"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Now"/>
-                                    <segment title="Today"/>
-                                </segments>
-                                <connections>
-                                    <action selector="ScreenChanger:" destination="JcV-mm-PgV" eventType="valueChanged" id="ZMI-8K-OpD"/>
-                                </connections>
-                            </segmentedControl>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="Sevvennnn" translatesAutoresizingMaskIntoConstraints="NO" id="A13-v7-g83">
                                 <rect key="frame" x="16" y="72" width="176" height="50"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7h-rC-2j0">
-                                <rect key="frame" x="16" y="166" width="568" height="426"/>
+                                <rect key="frame" x="16" y="158" width="568" height="434"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWM-GI-7nb">
-                                        <rect key="frame" x="8" y="8" width="351" height="57"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nmm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWM-GI-7nb">
+                                        <rect key="frame" x="0.0" y="0.0" width="548" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="351" id="RHR-3N-vpp"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="______ class is in room #***" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWB-Kp-xU4">
-                                        <rect key="frame" x="8" y="47" width="351" height="55"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="55" id="at3-EA-5a3"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The time now is: ___" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSX-Bv-vdg">
-                                        <rect key="frame" x="8" y="102" width="300" height="27"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="atC-02-vQi"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="RHR-3N-vpp"/>
+                                            </mask>
+                                        </variation>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N9D-1J-NMt">
-                                        <rect key="frame" x="0.0" y="0.0" width="568" height="426"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="434"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bFu-Js-lgy">
-                                                <rect key="frame" x="0.0" y="0.0" width="568" height="426"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="568" height="434"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <prototypes>
                                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DailyClassEvent" rowHeight="118" id="8Sn-az-aUS" customClass="TodayTableViewCell" customModule="Scheduling" customModuleProvider="target">
@@ -303,22 +276,40 @@
                                             <constraint firstAttribute="trailing" secondItem="bFu-Js-lgy" secondAttribute="trailing" id="XC2-V6-iGZ"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The time now is: ___" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSX-Bv-vdg">
+                                        <rect key="frame" x="0.0" y="36" width="196" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="atC-02-vQi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="atC-02-vQi"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="N9D-1J-NMt" secondAttribute="trailing" id="35C-xr-rwk"/>
-                                    <constraint firstItem="XWM-GI-7nb" firstAttribute="trailing" secondItem="BWB-Kp-xU4" secondAttribute="trailing" id="4pP-w7-Ejz"/>
-                                    <constraint firstItem="OSX-Bv-vdg" firstAttribute="top" secondItem="XWM-GI-7nb" secondAttribute="bottom" constant="37" id="74A-I4-kN5"/>
+                                    <constraint firstItem="OSX-Bv-vdg" firstAttribute="top" secondItem="XWM-GI-7nb" secondAttribute="bottom" constant="8" symbolic="YES" id="5u9-hm-iUc"/>
+                                    <constraint firstItem="OSX-Bv-vdg" firstAttribute="top" secondItem="XWM-GI-7nb" secondAttribute="bottom" constant="8" symbolic="YES" id="74A-I4-kN5"/>
+                                    <constraint firstItem="XWM-GI-7nb" firstAttribute="top" secondItem="j7h-rC-2j0" secondAttribute="top" id="A1B-qW-6iM"/>
                                     <constraint firstItem="XWM-GI-7nb" firstAttribute="top" secondItem="j7h-rC-2j0" secondAttribute="topMargin" id="Ksk-KV-MaT"/>
-                                    <constraint firstItem="BWB-Kp-xU4" firstAttribute="leading" secondItem="OSX-Bv-vdg" secondAttribute="leading" id="Q4E-Y4-rpR"/>
-                                    <constraint firstItem="OSX-Bv-vdg" firstAttribute="top" secondItem="BWB-Kp-xU4" secondAttribute="bottom" id="Vwh-1g-9mL"/>
+                                    <constraint firstItem="XWM-GI-7nb" firstAttribute="leading" secondItem="j7h-rC-2j0" secondAttribute="leading" id="SKF-zN-w3J"/>
                                     <constraint firstAttribute="bottom" secondItem="N9D-1J-NMt" secondAttribute="bottom" id="cip-JO-ycy"/>
-                                    <constraint firstItem="OSX-Bv-vdg" firstAttribute="leading" secondItem="N9D-1J-NMt" secondAttribute="leading" constant="8" id="eA1-Vc-IsU"/>
-                                    <constraint firstItem="BWB-Kp-xU4" firstAttribute="top" secondItem="j7h-rC-2j0" secondAttribute="top" constant="47" id="eEo-Xd-9od"/>
-                                    <constraint firstItem="XWM-GI-7nb" firstAttribute="leading" secondItem="BWB-Kp-xU4" secondAttribute="leading" id="iJs-l0-97c"/>
+                                    <constraint firstAttribute="trailing" secondItem="XWM-GI-7nb" secondAttribute="trailing" constant="20" symbolic="YES" id="czG-c7-J2q"/>
+                                    <constraint firstItem="OSX-Bv-vdg" firstAttribute="leading" secondItem="N9D-1J-NMt" secondAttribute="leading" id="eA1-Vc-IsU"/>
                                     <constraint firstItem="N9D-1J-NMt" firstAttribute="top" secondItem="j7h-rC-2j0" secondAttribute="top" id="kox-YU-aTJ"/>
                                     <constraint firstItem="N9D-1J-NMt" firstAttribute="leading" secondItem="j7h-rC-2j0" secondAttribute="leading" id="w2B-Eo-q7x"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Ksk-KV-MaT"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSh-Ue-6Wb">
                                 <rect key="frame" x="200" y="72" width="384" height="50"/>
@@ -326,14 +317,32 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eNA-gW-pxp">
+                                <rect key="frame" x="16" y="130" width="568" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="vyN-Ky-6Lc"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Now"/>
+                                    <segment title="Today"/>
+                                </segments>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="vyN-Ky-6Lc"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="ScreenChanger:" destination="JcV-mm-PgV" eventType="valueChanged" id="ZMI-8K-OpD"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.99947225752439173" green="1" blue="0.98127160863980523" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="j7h-rC-2j0" firstAttribute="top" secondItem="eNA-gW-pxp" secondAttribute="bottom" constant="8" symbolic="YES" id="1Lb-Fl-hYC"/>
                             <constraint firstItem="A13-v7-g83" firstAttribute="top" secondItem="fZC-AJ-hJe" secondAttribute="bottom" constant="8" symbolic="YES" id="2Ra-xB-Hwz"/>
                             <constraint firstItem="tSh-Ue-6Wb" firstAttribute="centerY" secondItem="A13-v7-g83" secondAttribute="centerY" id="48h-62-a8c"/>
                             <constraint firstItem="tSh-Ue-6Wb" firstAttribute="top" secondItem="fZC-AJ-hJe" secondAttribute="bottom" constant="8" symbolic="YES" id="720-aM-1v8"/>
-                            <constraint firstItem="bFu-Js-lgy" firstAttribute="top" secondItem="eNA-gW-pxp" secondAttribute="bottom" constant="8" id="76E-nm-WUk"/>
+                            <constraint firstItem="bFu-Js-lgy" firstAttribute="top" secondItem="eNA-gW-pxp" secondAttribute="bottom" id="76E-nm-WUk"/>
                             <constraint firstItem="FYt-fP-5Pb" firstAttribute="top" secondItem="j7h-rC-2j0" secondAttribute="bottom" constant="8" symbolic="YES" id="7Ph-HW-8fK"/>
                             <constraint firstItem="j7h-rC-2j0" firstAttribute="leading" secondItem="eNA-gW-pxp" secondAttribute="leading" id="HXr-YO-acH"/>
                             <constraint firstItem="eNA-gW-pxp" firstAttribute="top" secondItem="A13-v7-g83" secondAttribute="bottom" constant="8" symbolic="YES" id="MfZ-c7-9L0"/>
@@ -343,6 +352,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="tSh-Ue-6Wb" secondAttribute="trailing" id="WOu-Sh-cb0"/>
                             <constraint firstItem="tSh-Ue-6Wb" firstAttribute="leading" secondItem="A13-v7-g83" secondAttribute="trailing" constant="8" symbolic="YES" id="fRy-KZ-yOY"/>
                             <constraint firstItem="eNA-gW-pxp" firstAttribute="leading" secondItem="MKc-V4-Waz" secondAttribute="leadingMargin" id="iVj-9m-m9h"/>
+                            <constraint firstItem="XWM-GI-7nb" firstAttribute="top" secondItem="eNA-gW-pxp" secondAttribute="bottom" id="oV7-ku-GkG"/>
                             <constraint firstItem="j7h-rC-2j0" firstAttribute="trailing" secondItem="eNA-gW-pxp" secondAttribute="trailing" id="rZY-HF-G5V"/>
                         </constraints>
                         <variation key="default">
@@ -359,7 +369,6 @@
                         <outlet property="DailyScheduleTableView" destination="bFu-Js-lgy" id="ntO-n7-unm"/>
                         <outlet property="GreenView" destination="j7h-rC-2j0" id="4IU-pJ-THT"/>
                         <outlet property="OrangeView" destination="N9D-1J-NMt" id="hSo-o8-D3h"/>
-                        <outlet property="RoomNumber" destination="BWB-Kp-xU4" id="j5H-Tt-Wgd"/>
                         <outlet property="TimeNowLabel" destination="OSX-Bv-vdg" id="qFi-IN-RHV"/>
                         <outlet property="UserName" destination="tSh-Ue-6Wb" id="KvI-XR-RAQ"/>
                         <outlet property="segmentedControl" destination="eNA-gW-pxp" id="Q4b-sy-X6A"/>
