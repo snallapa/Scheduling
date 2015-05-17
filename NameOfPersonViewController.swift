@@ -74,8 +74,21 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
         let cell = tableView.dequeueReusableCellWithIdentifier("DailyClassEvent", forIndexPath: indexPath) as! TodayTableViewCell
         
        // if (((Schedule![dayOfWeek]! as! NSDictionary)["event\(indexPath.row + 1)"] as! NSDictionary)["name"]! as! String != ""){
+        
+        
+        
+        if (dayOfWeek != "sunday" && dayOfWeek != "saturday"){
         let currentEvent = ((Schedule![dayOfWeek]! as! NSDictionary)["event\(indexPath.row + 1)"] as! NSDictionary)
+        
+        
+        
         cell.event = currentEvent
+        }
+        else {
+        
+        cell.event = nil
+        }
+        
         return cell
     }
     
@@ -92,6 +105,7 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
         dateFormatter.dateFormat = "EEEE"
         dayOfWeek = dateFormatter.stringFromDate(currentDate).lowercaseString
     
+        println(dayOfWeek!)
         
         UserName.text! = text
         
@@ -120,7 +134,7 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
         var currentClassIndex = -1
     
         
-        if (dayOfWeek != "sunday" && dayOfWeek != "saturday"){
+        if (dayOfWeek! != "sunday" && dayOfWeek! != "saturday"){
         for i in 1...6 {
             let dailyStartTimes = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(i)"] as! NSDictionary)["startTime"]! as! String
             
@@ -148,7 +162,7 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
             }
             
             
-            if (dayOfWeek == "sunday" || dayOfWeek == "saturday"){
+            if (dayOfWeek! == "sunday" || dayOfWeek! == "saturday"){
                 ClassName.text = "You do not have class today"
             }
             

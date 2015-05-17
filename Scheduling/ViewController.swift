@@ -163,7 +163,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let personController = navigationController.topViewController as! NameOfPersonViewController
                 personController.text = residentsNames[i]
                 println("\(getScheduleFromName(residentsNames[i]))")
-                println(residentsFiltered[getScheduleFromName(residentsNames[i])]["schedule"])
+             //   println(residentsFiltered[getScheduleFromName(residentsNames[i])]["schedule"])
                 personController.Schedule = residentsFiltered[getScheduleFromName(residentsNames[i])]["schedule"]!
                 tableView.deselectRowAtIndexPath(tableView.indexPathForCell(cell)!, animated: true)
                 
