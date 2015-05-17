@@ -119,6 +119,8 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
         
         var currentClassIndex = -1
     
+        
+        if (dayOfWeek != "sunday" && dayOfWeek != "saturday"){
         for i in 1...6 {
             let dailyStartTimes = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(i)"] as! NSDictionary)["startTime"]! as! String
             
@@ -142,6 +144,12 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
                     }
                     
                 }
+            }
+            }
+            
+            
+            if (dayOfWeek == "sunday" || dayOfWeek == "saturday"){
+                ClassName.text = "You do not have class today"
             }
             
             if(currentClassIndex == -1) {
