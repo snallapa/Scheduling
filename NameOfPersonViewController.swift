@@ -161,23 +161,15 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
             }
             }
             
-            
+            RoomNumber.text = ""
             if (dayOfWeek! == "sunday" || dayOfWeek! == "saturday"){
                 ClassName.text = "You do not have class today"
             }
             
             if(currentClassIndex == -1) {
-
-                ClassName.text = ""
-                RoomNumber.text = "If you have a class, please attend it now"
+                ClassName.text = "You do not have class today"
             }
             else {
-                
-                let c = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
-         //       RoomNumber.text = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
-                ClassName.text = "You have: \(c)"
-
-                ClassName.text = "You have no classes now"
         
                 let classText = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
                 if(classText.isEmpty) {

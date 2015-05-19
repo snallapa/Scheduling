@@ -50,7 +50,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
                     self.residentsFiltered = Array(objectss[0..<objectss.count])
                 }
-                self.tableView.reloadData()
+                self.updateTableView()
                 
             } else {
                 // Log details of the failure
@@ -96,6 +96,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 --i
             }
         }
+        if(residentName.isEmpty) {
+            resetNames()
+        }
         tableView.reloadData()
     }
     
@@ -105,7 +108,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if(string.isEmpty) {
                 residentName = residentName.substringToIndex(advance(residentName.startIndex, count(residentName) - 1))
             }
-            residentName += string
+            else {
+               residentName += string
+            }
+            
             
         }
         return true
@@ -117,13 +123,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             residentsNames.append(residentsFiltered[i]["name"] as! String)
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -166,10 +165,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
              //   println(residentsFiltered[getScheduleFromName(residentsNames[i])]["schedule"])
                 personController.Schedule = residentsFiltered[getScheduleFromName(residentsNames[i])]["schedule"]!
                 tableView.deselectRowAtIndexPath(tableView.indexPathForCell(cell)!, animated: true)
-                
-                
-               
-                
             }
         }
         
