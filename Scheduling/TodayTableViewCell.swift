@@ -19,12 +19,16 @@ class TodayTableViewCell: UITableViewCell {
             updateUI()
         }
     }
+    var nowEvent = false
     
     func updateUI() {
+        self.selectionStyle = UITableViewCellSelectionStyle.None
         if let timeEvent = event {
             var classText = ""
             
-            
+            if(nowEvent) {
+                //self.backgroundColor = UIColor.cyanColor()
+            }
             
             if ((timeEvent["name"] as! String).isEmpty) {
                 classText = "No Class"
@@ -35,7 +39,7 @@ class TodayTableViewCell: UITableViewCell {
             eventNameLabel.text = classText
             let startTime = timeEvent["startTime"] as! String
             let endTime = timeEvent["endTime"] as! String
-            timeLabel.text = ("\(startTime):\(endTime)")
+            timeLabel.text = ("\(startTime) : \(endTime)")
         }
         
         if (event == nil){
