@@ -137,13 +137,12 @@
 			children = (
 				B6C05CBA1AFEA3BA00C3BABC /* NameOfPersonViewController.swift */,
 				35C5ED821AE815A100350B49 /* AppDelegate.swift */,
+				353944201B0563EE000B0828 /* TodayTableViewCell.swift */,
 				35C5ED841AE815A100350B49 /* ViewController.swift */,
 				35C5ED861AE815A100350B49 /* Main.storyboard */,
 				35C5ED891AE815A100350B49 /* Images.xcassets */,
 				35C5ED8B1AE815A100350B49 /* LaunchScreen.xib */,
 				35C5ED801AE815A100350B49 /* Supporting Files */,
-				B6295A7A1AF0F685005DC493 /* SegmentedViews.storyboard */,
-				353944201B0563EE000B0828 /* TodayTableViewCell.swift */,
 			);
 			path = Scheduling;
 			sourceTree = "<group>";
@@ -151,6 +150,7 @@
 		35C5ED801AE815A100350B49 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B6295A7A1AF0F685005DC493 /* SegmentedViews.storyboard */,
 				35C5ED811AE815A100350B49 /* Info.plist */,
 			);
 			name = "Supporting Files";
