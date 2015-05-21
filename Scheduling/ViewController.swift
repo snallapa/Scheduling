@@ -91,7 +91,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func updateTableView() {
         for var i = 0; i<residentsNames.count;++i {
-            if(residentsNames[i].lowercaseString.rangeOfString(residentName) == nil) {
+            if(residentsNames[i].lowercaseString.rangeOfString(residentName.lowercaseString) == nil) {
                 residentsNames.removeAtIndex(i)
                 --i
             }

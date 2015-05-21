@@ -122,8 +122,8 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
         let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitTimeZone, fromDate:  NSDate())
         //let currentHour = (components.hour % 12)
         //let currentMinute = (components.minute)
-        let currentMinute = 2
-        let currentHour = 2
+        let currentMinute = 31
+        let currentHour = 10
         
         println("\(currentHour):\(currentMinute)")
         
