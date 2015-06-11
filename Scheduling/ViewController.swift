@@ -133,9 +133,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath) as! UITableViewCell
-        let text = residentsNames[indexPath.row]
-        cell.textLabel?.text = text
+        let cell = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath) as! ResidentTableViewCell
+        let tableResidentName = residentsNames[indexPath.row]
+        cell.resident = residentsFiltered[getScheduleFromName(tableResidentName)]
         
         return cell 
     }

@@ -123,7 +123,7 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
         //let currentHour = (components.hour % 12)
         //let currentMinute = (components.minute)
         let currentMinute = 31
-        let currentHour = 10
+        let currentHour = 9
         
         println("\(currentHour):\(currentMinute)")
         
