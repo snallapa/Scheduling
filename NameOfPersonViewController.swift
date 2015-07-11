@@ -12,9 +12,8 @@ import Parse
 
 class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
-    var text = String()
-    
-    var Schedule: AnyObject? = AnyObject?()
+    var residentSelected = PFObject()
+
     
     var currentDate = NSDate()
     
@@ -79,10 +78,10 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
         let cell = tableView.dequeueReusableCellWithIdentifier("DailyClassEvent", forIndexPath: indexPath) as! TodayTableViewCell
         
         // if (((Schedule![dayOfWeek]! as! NSDictionary)["event\(indexPath.row + 1)"] as! NSDictionary)["name"]! as! String != ""){
-        
+        let schedule: AnyObject? = residentSelected["schedule"]
         
         if (dayOfWeek != "sunday" && dayOfWeek != "saturday"){
-            let currentEvent = ((Schedule![dayOfWeek]! as! NSDictionary)["event\(indexPath.row + 1)"] as! NSDictionary)
+            let currentEvent = ((schedule![dayOfWeek]! as! NSDictionary)["event\(indexPath.row + 1)"] as! NSDictionary)
             
             
             
@@ -114,6 +113,7 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
         dayOfWeek = dateFormatter.stringFromDate(currentDate).lowercaseString
         
         println(dayOfWeek!)
+        let text = residentSelected["name"] as! String
         
         UserName.text! = text
         
@@ -142,9 +142,10 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
         
         if (dayOfWeek! != "sunday" && dayOfWeek! != "saturday"){
             for i in 1...6 {
-                let dailyStartTimes = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(i)"] as! NSDictionary)["startTime"]! as! String
+                let schedule: AnyObject? = residentSelected["schedule"]
+                let dailyStartTimes = ((schedule![dayOfWeek!]! as! NSDictionary)["event\(i)"] as! NSDictionary)["startTime"]! as! String
                 
-                let dailyEndTimes = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(i)"] as! NSDictionary)["endTime"]! as! String
+                let dailyEndTimes = ((schedule![dayOfWeek!]! as! NSDictionary)["event\(i)"] as! NSDictionary)["endTime"]! as! String
                 
                 println(dailyStartTimes)
                 println(dailyEndTimes)
@@ -197,8 +198,8 @@ class NameOfPersonViewController: UIViewController, UITableViewDataSource, UITab
                 ClassName.text = "You do not have class right now"
             }
             else {
-                
-                let classText = ((Schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
+                let schedule: AnyObject? = residentSelected["schedule"]
+                let classText = ((schedule![dayOfWeek!]! as! NSDictionary)["event\(currentClassIndex)"] as! NSDictionary)["name"]! as! String
                 if(classText.isEmpty) {
                     ClassName.text = "You do not have class right now"
                 }

@@ -10,146 +10,91 @@ import UIKit
 import Parse
 import Foundation
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
-    var residentsNames = [String]()
+    var residents = [PFObject]?()
     
-    var residentsFiltered = [PFObject]() {
-        didSet {
-            resetNames()
-        }
-    }
+    var residentsFiltered = [PFObject]()
     
     var currentUserName = "Name"
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "getResidents:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+        }()
     
-    @IBOutlet weak var userSearchField: UITextField!
     
     @IBOutlet weak var tableView: UITableView!
     
-    var residentName = "" {
-        didSet{
-            updateTableView()
-        }
-    }
-    
-    
-    
-    
-    @IBAction func groupChosen(sender: UIButton) {
-        let color = sender.currentTitle!.lowercaseString
-        var query = PFQuery(className:"Residents")
-        query.whereKey("color", equalTo:color)
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil {
-                // The find succeeded.
-                println("Successfully retrieved \(objects!.count) scores.")
-                // Do something with the found objects
-                if let objectss = objects as? [PFObject] {
+    @IBOutlet weak var participantSearch: UISearchBar!
 
-                    self.residentsFiltered = Array(objectss[0..<objectss.count])
-                }
-                self.updateTableView()
-                
-            } else {
-                // Log details of the failure
-                println("Error: \(error!) \(error!.userInfo!)")
-            }
-        }
-        
-        self.userSearchField.becomeFirstResponder()
-    }
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        getResidents(refreshControl)
+        tableView.addSubview(refreshControl)
+        tableView.delegate = self
+        tableView.dataSource = self
+        participantSearch.delegate = self
+        
+    }
+    
+
+    func getResidents(refreshControl: UIRefreshControl) {
+        participantSearch.text = ""
         var query = PFQuery(className:"Residents")
         query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
+            (residents: [AnyObject]?, error: NSError?) -> Void in
             
             if error == nil {
                 // The find succeeded.
-                println("Successfully retrieved \(objects!.count) scores.")
+                println("Successfully retrieved \(residents!.count) residents.")
+                self.residents = residents?.map({$0 as! PFObject})
+                self.residentsFiltered = self.residents!.map({$0})
                 // Do something with the found objects
-                if let objectss = objects as? [PFObject] {
-                    self.residentsFiltered = Array(objectss[0..<objectss.count])
-                }
                 self.tableView.reloadData()
             } else {
                 // Log details of the failure
                 println("Error: \(error!) \(error!.userInfo!)")
             }
+            refreshControl.endRefreshing()
         }
-        tableView.delegate = self
-        tableView.dataSource = self
-        userSearchField.delegate = self
     }
     
-    func updateTableView() {
-        for var i = 0; i<residentsNames.count;++i {
-            if(residentsNames[i].lowercaseString.rangeOfString(residentName.lowercaseString) == nil) {
-                residentsNames.removeAtIndex(i)
-                --i
-            }
-        }
-        if(residentName.isEmpty) {
-            resetNames()
-        }
-        tableView.reloadData()
+    private func doesResidentNameHaveText(resident: PFObject, searchText: String) -> Bool {
+        let currentResidentName = (resident["name"] as! String).lowercaseString
+        return currentResidentName.rangeOfString(searchText.lowercaseString) != nil
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if textField == userSearchField {
-            resetNames()
-            if(string.isEmpty) {
-                residentName = residentName.substringToIndex(advance(residentName.startIndex, count(residentName) - 1))
-            }
-            else {
-               residentName += string
-            }
-            
-            
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            residentsFiltered = residents!.map({$0})
         }
-        return true
-    }
-    
-    func resetNames() {
-        residentsNames.removeAll()
-        for i in 0..<residentsFiltered.count {
-            residentsNames.append(residentsFiltered[i]["name"] as! String)
+        else {
+            //closure to filter
+            residentsFiltered = residents!.filter({self.doesResidentNameHaveText($0, searchText: searchText)})
+            tableView.reloadData()
         }
     }
+
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return residentsNames.count
+        return residentsFiltered.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath) as! ResidentTableViewCell
-        let tableResidentName = residentsNames[indexPath.row]
-        cell.resident = residentsFiltered[getScheduleFromName(tableResidentName)]
+            cell.resident = residentsFiltered[indexPath.row]
         
         return cell 
     }
   
-    
-    func getScheduleFromName(name: String) -> Int{
-        for i in 0..<residentsFiltered.count {
-            if(residentsFiltered[i]["name"] as! String == name) {
-                return i
-            }
-        }
-        return -1
-    }
-    
   
     
     
@@ -160,10 +105,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if segue.identifier == "NameToSchedule"{
                 let navigationController = segue.destinationViewController as! UINavigationController
                 let personController = navigationController.topViewController as! NameOfPersonViewController
-                personController.text = residentsNames[i]
-                println("\(getScheduleFromName(residentsNames[i]))")
-             //   println(residentsFiltered[getScheduleFromName(residentsNames[i])]["schedule"])
-                personController.Schedule = residentsFiltered[getScheduleFromName(residentsNames[i])]["schedule"]!
+                personController.residentSelected = residentsFiltered[i]
                 tableView.deselectRowAtIndexPath(tableView.indexPathForCell(cell)!, animated: true)
             }
         }
