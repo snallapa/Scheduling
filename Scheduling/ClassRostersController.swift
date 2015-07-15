@@ -15,13 +15,13 @@ class ClassRostersController: UIViewController, UITableViewDataSource, UITableVi
     var classRosters = [PFObject]?()
     
     var classRostersFiltered = [PFObject]()
-    
-    private let daysOfWeek = ["monday", "tuesday", "wednesday", "thursday", "friday"]
+
+    private let daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "getResidents:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: "getClassRosters:", forControlEvents: UIControlEvents.ValueChanged)
         
         return refreshControl
         }()
@@ -34,23 +34,42 @@ class ClassRostersController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        getResidents(refreshControl)
         tableView.addSubview(refreshControl)
         tableView.delegate = self
         tableView.dataSource = self
+        if let numberOfWeek = getCurrentDay() {
+            weekControl.selectedSegmentIndex = numberOfWeek
+        }
+        getClassRosters(refreshControl)
+        
         
     }
     
+    func getCurrentDay() -> Int? {
+        let currentDate = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        
+        let day = dateFormatter.stringFromDate(currentDate).lowercaseString
+        return find(daysOfWeek.map({$0.lowercaseString}), day)
+        
+        
+    }
     
-    func getResidents(refreshControl: UIRefreshControl) {
+    @IBAction func dayChanged(sender: UISegmentedControl) {
+        getClassRosters(refreshControl)
+    }
+    
+    func getClassRosters(refreshControl: UIRefreshControl) {
         var query = PFQuery(className:"ClassRosters")
         query.orderByAscending("name")
+        query.whereKey("day", equalTo: daysOfWeek[weekControl.selectedSegmentIndex])
         query.findObjectsInBackgroundWithBlock {
             (residents: [AnyObject]?, error: NSError?) -> Void in
             
             if error == nil {
                 // The find succeeded.
-                println("Successfully retrieved \(residents!.count) residents.")
+                println("Successfully retrieved \(residents!.count) class rosters.")
                 self.classRosters = residents?.map({$0 as! PFObject})
                 self.classRostersFiltered = self.classRosters!.map({$0})
                 // Do something with the found objects
@@ -89,8 +108,13 @@ class ClassRostersController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("participantTableCell", forIndexPath: indexPath) as! UITableViewCell
-        cell.textLabel?.text = classRostersFiltered[indexPath.row]["name"] as? String
+        let cell = tableView.dequeueReusableCellWithIdentifier("rosterTableCell", forIndexPath: indexPath) as! UITableViewCell
+        let currentClass = classRostersFiltered[indexPath.row]
+        cell.textLabel?.text = currentClass["name"] as? String
+        let day = currentClass["day"] as! String
+        let startTime = currentClass["startTime"] as! String
+        let endTime = currentClass["endTime"] as! String
+        cell.detailTextLabel?.text = "\(day): \(startTime) - \(endTime)"
         
         return cell
     }
