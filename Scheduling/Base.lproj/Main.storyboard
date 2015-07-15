@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="L2T-c1-a0x">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -31,61 +30,31 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bTS-ZA-fcF" id="p4q-M4-tRK">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bGz-t0-jyu">
-                                                    <rect key="frame" x="8" y="8" width="77.5" height="77.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="bGz-t0-jyu" secondAttribute="height" multiplier="1:1" id="RS9-Ka-vyn"/>
-                                                        <constraint firstAttribute="width" secondItem="bGz-t0-jyu" secondAttribute="height" multiplier="1:1" id="a4O-OM-h6y"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="a4O-OM-h6y"/>
-                                                        </mask>
-                                                    </variation>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfN-eF-Qfq">
-                                                    <rect key="frame" x="93.5" y="8" width="498.5" height="77.5"/>
+                                                    <rect key="frame" x="8" y="8" width="584" height="77.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="bGz-t0-jyu" firstAttribute="top" secondItem="p4q-M4-tRK" secondAttribute="topMargin" id="6ks-4S-O3F"/>
+                                                <constraint firstItem="vfN-eF-Qfq" firstAttribute="bottom" secondItem="p4q-M4-tRK" secondAttribute="bottomMargin" id="1u2-ZG-KNe"/>
                                                 <constraint firstItem="vfN-eF-Qfq" firstAttribute="leading" secondItem="p4q-M4-tRK" secondAttribute="leadingMargin" id="9IR-jU-IO5"/>
-                                                <constraint firstItem="bGz-t0-jyu" firstAttribute="centerY" secondItem="vfN-eF-Qfq" secondAttribute="centerY" id="C3S-Ty-1F8"/>
+                                                <constraint firstItem="vfN-eF-Qfq" firstAttribute="leading" secondItem="p4q-M4-tRK" secondAttribute="leadingMargin" id="ADd-8G-dRw"/>
                                                 <constraint firstItem="vfN-eF-Qfq" firstAttribute="top" secondItem="p4q-M4-tRK" secondAttribute="topMargin" id="Dm2-dM-I0Q"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="vfN-eF-Qfq" secondAttribute="trailing" id="Ers-a2-M4V"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="bGz-t0-jyu" secondAttribute="trailing" id="Ozv-5u-sVy"/>
                                                 <constraint firstItem="vfN-eF-Qfq" firstAttribute="top" secondItem="p4q-M4-tRK" secondAttribute="topMargin" id="R4t-Eb-a80"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="bGz-t0-jyu" secondAttribute="bottom" id="R9S-X7-YaQ"/>
-                                                <constraint firstItem="vfN-eF-Qfq" firstAttribute="leading" secondItem="bGz-t0-jyu" secondAttribute="trailing" constant="8" symbolic="YES" id="SJl-Fd-Xw0"/>
-                                                <constraint firstItem="bGz-t0-jyu" firstAttribute="leading" secondItem="vfN-eF-Qfq" secondAttribute="trailing" constant="8" symbolic="YES" id="SV9-Dd-uss"/>
-                                                <constraint firstItem="bGz-t0-jyu" firstAttribute="top" secondItem="p4q-M4-tRK" secondAttribute="topMargin" id="U5F-Rf-lhg"/>
-                                                <constraint firstItem="bGz-t0-jyu" firstAttribute="leading" secondItem="p4q-M4-tRK" secondAttribute="leadingMargin" id="UW6-kB-abf"/>
-                                                <constraint firstItem="vfN-eF-Qfq" firstAttribute="leading" secondItem="bGz-t0-jyu" secondAttribute="trailing" constant="90" id="fBD-Iu-S6e"/>
-                                                <constraint firstItem="bGz-t0-jyu" firstAttribute="centerY" secondItem="vfN-eF-Qfq" secondAttribute="centerY" id="lys-Ny-GsG"/>
-                                                <constraint firstItem="bGz-t0-jyu" firstAttribute="leading" secondItem="p4q-M4-tRK" secondAttribute="leadingMargin" id="ugg-Cs-MB2"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="vfN-eF-Qfq" secondAttribute="bottom" id="wMZ-cm-TYU"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="bGz-t0-jyu" secondAttribute="bottom" id="wWp-eE-QX0"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="6ks-4S-O3F"/>
-                                                    <exclude reference="ugg-Cs-MB2"/>
-                                                    <exclude reference="C3S-Ty-1F8"/>
-                                                    <exclude reference="R9S-X7-YaQ"/>
-                                                    <exclude reference="SV9-Dd-uss"/>
-                                                    <exclude reference="Ozv-5u-sVy"/>
                                                     <exclude reference="9IR-jU-IO5"/>
-                                                    <exclude reference="fBD-Iu-S6e"/>
-                                                    <exclude reference="wMZ-cm-TYU"/>
                                                     <exclude reference="Dm2-dM-I0Q"/>
+                                                    <exclude reference="wMZ-cm-TYU"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="residentContactPicture" destination="bGz-t0-jyu" id="t7L-Hv-TuO"/>
                                             <outlet property="residentName" destination="vfN-eF-Qfq" id="FLC-9G-QBp"/>
                                         </connections>
                                     </tableViewCell>

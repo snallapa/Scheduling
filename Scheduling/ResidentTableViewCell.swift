@@ -18,11 +18,12 @@ class ResidentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var residentName: UILabel!
 
-    @IBOutlet weak var residentContactPicture: UIImageView!
+    //@IBOutlet weak var residentContactPicture: UIImageView!
 
     
     func updateUI() {
         residentName.text = resident!["name"] as? String
+        /* insert back if needed
         if(resident!["picture"] != nil) {
             let userImageFile = resident!["picture"] as! PFFile
             userImageFile.getDataInBackgroundWithBlock {
@@ -42,6 +43,6 @@ class ResidentTableViewCell: UITableViewCell {
             residentContactPicture.image = UIImage(named: "defaultContactPicture")
         }
 
-        
+        */
     }
 }
