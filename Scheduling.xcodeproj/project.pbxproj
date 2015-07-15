@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		352A56511B54983700B35217 /* ClassRostersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352A56501B54983700B35217 /* ClassRostersController.swift */; };
 		353944211B0563EE000B0828 /* TodayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353944201B0563EE000B0828 /* TodayTableViewCell.swift */; };
 		356DF6B01B1CC6A20064BAF4 /* ResidentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356DF6AF1B1CC6A20064BAF4 /* ResidentTableViewCell.swift */; };
 		35C5ED831AE815A100350B49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5ED821AE815A100350B49 /* AppDelegate.swift */; };
-		35C5ED851AE815A100350B49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5ED841AE815A100350B49 /* ViewController.swift */; };
+		35C5ED851AE815A100350B49 /* ParticipantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5ED841AE815A100350B49 /* ParticipantController.swift */; };
 		35C5ED881AE815A100350B49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C5ED861AE815A100350B49 /* Main.storyboard */; };
 		35C5ED8A1AE815A100350B49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35C5ED891AE815A100350B49 /* Images.xcassets */; };
 		35C5ED8D1AE815A100350B49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35C5ED8B1AE815A100350B49 /* LaunchScreen.xib */; };
@@ -48,12 +49,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		352A56501B54983700B35217 /* ClassRostersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassRostersController.swift; sourceTree = "<group>"; };
 		353944201B0563EE000B0828 /* TodayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayTableViewCell.swift; sourceTree = "<group>"; };
 		356DF6AF1B1CC6A20064BAF4 /* ResidentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentTableViewCell.swift; sourceTree = "<group>"; };
 		35C5ED7D1AE815A100350B49 /* Scheduling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scheduling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C5ED811AE815A100350B49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35C5ED821AE815A100350B49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		35C5ED841AE815A100350B49 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		35C5ED841AE815A100350B49 /* ParticipantController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantController.swift; sourceTree = "<group>"; };
 		35C5ED871AE815A100350B49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35C5ED891AE815A100350B49 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		35C5ED8C1AE815A100350B49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -141,7 +143,7 @@
 			children = (
 				B6C05CBA1AFEA3BA00C3BABC /* NameOfPersonViewController.swift */,
 				35C5ED821AE815A100350B49 /* AppDelegate.swift */,
-				35C5ED841AE815A100350B49 /* ViewController.swift */,
+				35C5ED841AE815A100350B49 /* ParticipantController.swift */,
 				35C5ED861AE815A100350B49 /* Main.storyboard */,
 				35C5ED891AE815A100350B49 /* Images.xcassets */,
 				35C5ED8B1AE815A100350B49 /* LaunchScreen.xib */,
@@ -150,6 +152,7 @@
 				353944201B0563EE000B0828 /* TodayTableViewCell.swift */,
 				356DF6AF1B1CC6A20064BAF4 /* ResidentTableViewCell.swift */,
 				35EDC08E1B1E3D100095AD82 /* ResidentGrouping.swift */,
+				352A56501B54983700B35217 /* ClassRostersController.swift */,
 			);
 			path = Scheduling;
 			sourceTree = "<group>";
@@ -305,7 +308,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35C5ED851AE815A100350B49 /* ViewController.swift in Sources */,
+				35C5ED851AE815A100350B49 /* ParticipantController.swift in Sources */,
+				352A56511B54983700B35217 /* ClassRostersController.swift in Sources */,
 				35C5ED831AE815A100350B49 /* AppDelegate.swift in Sources */,
 				B6C05CBB1AFEA3BA00C3BABC /* NameOfPersonViewController.swift in Sources */,
 				353944211B0563EE000B0828 /* TodayTableViewCell.swift in Sources */,

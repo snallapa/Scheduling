@@ -10,13 +10,14 @@ import UIKit
 import Parse
 import Foundation
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class ClassRostersController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
-    var residents = [PFObject]?()
+    var classRosters = [PFObject]?()
     
-    var residentsFiltered = [PFObject]()
+    var classRostersFiltered = [PFObject]()
     
-    var currentUserName = "Name"
+    private let daysOfWeek = ["monday", "tuesday", "wednesday", "thursday", "friday"]
+    
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -28,8 +29,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var participantSearch: UISearchBar!
-
+    @IBOutlet weak var weekControl: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -37,22 +38,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.addSubview(refreshControl)
         tableView.delegate = self
         tableView.dataSource = self
-        participantSearch.delegate = self
         
     }
     
-
+    
     func getResidents(refreshControl: UIRefreshControl) {
-        participantSearch.text = ""
-        var query = PFQuery(className:"Residents")
+        var query = PFQuery(className:"ClassRosters")
+        query.orderByAscending("name")
         query.findObjectsInBackgroundWithBlock {
             (residents: [AnyObject]?, error: NSError?) -> Void in
             
             if error == nil {
                 // The find succeeded.
                 println("Successfully retrieved \(residents!.count) residents.")
-                self.residents = residents?.map({$0 as! PFObject})
-                self.residentsFiltered = self.residents!.map({$0})
+                self.classRosters = residents?.map({$0 as! PFObject})
+                self.classRostersFiltered = self.classRosters!.map({$0})
                 // Do something with the found objects
                 self.tableView.reloadData()
             } else {
@@ -70,42 +70,40 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            residentsFiltered = residents!.map({$0})
+            classRostersFiltered = classRosters!.map({$0})
         }
         else {
             //closure to filter
-            residentsFiltered = residents!.filter({self.doesResidentNameHaveText($0, searchText: searchText)})
+            classRostersFiltered = classRosters!.filter({self.doesResidentNameHaveText($0, searchText: searchText)})
             tableView.reloadData()
         }
     }
-
-
+    
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return residentsFiltered.count
+        return classRostersFiltered.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath) as! ResidentTableViewCell
-            cell.resident = residentsFiltered[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("participantTableCell", forIndexPath: indexPath) as! UITableViewCell
+        cell.textLabel?.text = classRostersFiltered[indexPath.row]["name"] as? String
         
-        return cell 
+        return cell
     }
-  
-  
+    
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-              
+        
         if let cell = sender as? UITableViewCell {
             let i = tableView.indexPathForCell(cell)!.row
             if segue.identifier == "NameToSchedule"{
                 let navigationController = segue.destinationViewController as! UINavigationController
                 let personController = navigationController.topViewController as! NameOfPersonViewController
-                personController.residentSelected = residentsFiltered[i]
                 tableView.deselectRowAtIndexPath(tableView.indexPathForCell(cell)!, animated: true)
             }
         }

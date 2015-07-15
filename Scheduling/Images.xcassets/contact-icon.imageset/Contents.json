@@ -3,11 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "contactPicture.png"
+      "filename" : "contact-icon.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "contact-icon-res.png"
     },
     {
       "idiom" : "universal",
